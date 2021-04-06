@@ -1,0 +1,173 @@
+# depslib dependency file v1.0
+1617710780 source:c:\users\klein\desktop\piscine\main.cpp
+	<iostream>
+	<cstdlib>
+	"Graphe.h"
+	"Sommet.h"
+	"Trajet.h"
+
+1617722856 source:c:\users\klein\desktop\piscine\sommet.cpp
+	"Sommet.h"
+
+1617722856 c:\users\klein\desktop\piscine\sommet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	"Trajet.h"
+
+1617728110 source:c:\users\klein\desktop\piscine\graphe.cpp
+	"Graphe.h"
+
+1617726328 c:\users\klein\desktop\piscine\graphe.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	"Sommet.h"
+	"Trajet.h"
+	<map>
+
+1617580889 c:\users\klein\desktop\piscine\sommet.cpp
+	"Sommet.h"
+
+1617580614 c:\users\klein\desktop\piscine\graphe.cpp
+	"Graphe.h"
+
+1617727403 c:\users\klein\desktop\piscine\trajet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<ostream>
+	"Sommet.h"
+
+1617727408 source:c:\users\klein\desktop\piscine\trajet.cpp
+	"Trajet.h"
+
+1617712965 source:c:\users\klein\desktop\projet_piscine\piscine\graphe.cpp
+	"Graphe.h"
+
+1617712868 c:\users\klein\desktop\projet_piscine\piscine\graphe.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	"Sommet.h"
+	"Trajet.h"
+	<map>
+
+1617710684 c:\users\klein\desktop\projet_piscine\piscine\sommet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+
+1617710684 c:\users\klein\desktop\projet_piscine\piscine\trajet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<ostream>
+
+1617710778 source:c:\users\klein\desktop\projet_piscine\piscine\main.cpp
+	<iostream>
+	<cstdlib>
+	"Graphe.h"
+	"Sommet.h"
+	"Trajet.h"
+
+1617709836 source:c:\users\klein\desktop\projet_piscine\piscine\sommet.cpp
+	"Sommet.h"
+
+1617710684 source:c:\users\klein\desktop\projet_piscine\piscine\trajet.cpp
+	"Trajet.h"
+
+1617710780 source:c:\users\nicof\desktop\piscine\main.cpp
+	<iostream>
+	<cstdlib>
+	"Graphe.h"
+	"Sommet.h"
+	"Trajet.h"
+
+1617726328 c:\users\nicof\desktop\piscine\graphe.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	"Sommet.h"
+	"Trajet.h"
+	<map>
+
+1617722856 c:\users\nicof\desktop\piscine\sommet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	"Trajet.h"
+
+1617727403 c:\users\nicof\desktop\piscine\trajet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<ostream>
+	"Sommet.h"
+
+1617722856 source:c:\users\nicof\desktop\piscine\sommet.cpp
+	"Sommet.h"
+
+1617727408 source:c:\users\nicof\desktop\piscine\trajet.cpp
+	"Trajet.h"
+
+1617727327 source:c:\users\nicof\desktop\piscine\graphe.cpp
+	"Graphe.h"
+
+1617728110 source:c:\users\klein\desktop\piscine_1.3\graphe.cpp
+	"Graphe.h"
+
+1617726328 c:\users\klein\desktop\piscine_1.3\graphe.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<cmath>
+	<queue>
+	"Sommet.h"
+	"Trajet.h"
+	<map>
+
+1617722856 c:\users\klein\desktop\piscine_1.3\sommet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	"Trajet.h"
+
+1617727403 c:\users\klein\desktop\piscine_1.3\trajet.h
+	<fstream>
+	<iostream>
+	<vector>
+	<string>
+	<ostream>
+	"Sommet.h"
+
+1617710780 source:c:\users\klein\desktop\piscine_1.3\main.cpp
+	<iostream>
+	<cstdlib>
+	"Graphe.h"
+	"Sommet.h"
+	"Trajet.h"
+
+1617722856 source:c:\users\klein\desktop\piscine_1.3\sommet.cpp
+	"Sommet.h"
+
+1617727408 source:c:\users\klein\desktop\piscine_1.3\trajet.cpp
+	"Trajet.h"
+
