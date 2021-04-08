@@ -174,9 +174,9 @@ void Graphe::trajetSommetDepartEtArrive()
                     {
                         if(pointdepart == m->getterSnumeroPoint())          //si le point correspond au point de depart
                         {
-                            nompointdepart = m->getterSnomLieuPoint();     //on recupere le nom du point de depart
+                            nompointdepart = m->getterSnomLieuPoint();      //on recupere le nom du point de depart
                         }
-                        if(pointarrivee == m->getterSnumeroPoint())          //si le point correspon au point de depart
+                        if(pointarrivee == m->getterSnumeroPoint())         //si le point correspon au point de depart
                         {
                             nompointarrivee = m->getterSnomLieuPoint();     //on recupere le nom du point d'arrivee
                         }
@@ -221,9 +221,9 @@ void Graphe::trajetSommetDepartEtArrive()
                     {
                         if(pointdepart == m->getterSnumeroPoint())          //si le point correspond au point de depart
                         {
-                            nompointdepart = m->getterSnomLieuPoint();     //on recupere le nom du point de depart
+                            nompointdepart = m->getterSnomLieuPoint();      //on recupere le nom du point de depart
                         }
-                        if(pointarrivee == m->getterSnumeroPoint())          //si le point correspon au point de depart
+                        if(pointarrivee == m->getterSnumeroPoint())         //si le point correspon au point de depart
                         {
                             nompointarrivee = m->getterSnomLieuPoint();     //on recupere le nom du point d'arrivee
                         }
@@ -290,19 +290,19 @@ void Graphe::SommettrajetDepartEtArrive()
             int trajetQuiArriveINT, trajetQuiPartINT;
             std::string trajetQuiArrive, trajetQuiPart;
 
-            for (auto m : m_liste_trajet)                        //on parcours la liste des trajets
+            for (auto m : m_liste_trajet)                           //on parcours la liste des trajets
             {
-                if(numpoint == m->getterPointDepart())          //si le point correspond au point de depart
+                if(numpoint == m->getterPointDepart())              //si le point correspond au point de depart
                 {
-                    trajetQuiArriveINT=m->getterNumeroTrajet();    //on recupere le numero du trajet
-                    trajetQuiArrive = m->getterNomTrajet();     //on recupere le nom du trajet
+                    trajetQuiArriveINT=m->getterNumeroTrajet();     //on recupere le numero du trajet
+                    trajetQuiArrive = m->getterNomTrajet();         //on recupere le nom du trajet
                     std::cout<<" Le trajet numero : "<<trajetQuiArriveINT<<" nomme : "<<trajetQuiArrive<<" part du point choisi"<<std::endl;
                 }
 
-                if(numpoint == m->getterPointArrivee())          //si le point correspond au point de depart
+                if(numpoint == m->getterPointArrivee())             //si le point correspond au point de depart
                 {
-                    trajetQuiPartINT=m->getterNumeroTrajet();    //on recupere le numero du trajet
-                    trajetQuiPart = m->getterNomTrajet();     //on recupere le nom du trajet
+                    trajetQuiPartINT=m->getterNumeroTrajet();       //on recupere le numero du trajet
+                    trajetQuiPart = m->getterNomTrajet();           //on recupere le nom du trajet
                     std::cout<<" Le trajet numero : "<<trajetQuiPartINT<<" nomme : "<<trajetQuiPart<<" arrive au point choisi"<<std::endl;
                 }
 
@@ -336,19 +336,19 @@ void Graphe::SommettrajetDepartEtArrive()
                     numpoint= z->getterSnumeroPoint();
                 }
             }
-            for (auto m : m_liste_trajet)                        //on parcours la liste des trajets
+            for (auto m : m_liste_trajet)                           //on parcours la liste des trajets
             {
-                if(numpoint == m->getterPointDepart())          //si le point correspond au point de depart
+                if(numpoint == m->getterPointDepart())              //si le point correspond au point de depart
                 {
-                    trajetQuiArriveINT=m->getterNumeroTrajet();    //on recupere le numero du trajet
-                    trajetQuiArrive = m->getterNomTrajet();     //on recupere le nom du trajet
+                    trajetQuiArriveINT=m->getterNumeroTrajet();     //on recupere le numero du trajet
+                    trajetQuiArrive = m->getterNomTrajet();         //on recupere le nom du trajet
                     std::cout<<" Le trajet numero : "<<trajetQuiArriveINT<<" nomme : "<<trajetQuiArrive<<" part du point choisi"<<std::endl;
                 }
 
-                if(numpoint == m->getterPointArrivee())          //si le point correspond au point de depart
+                if(numpoint == m->getterPointArrivee())             //si le point correspond au point de depart
                 {
-                    trajetQuiPartINT=m->getterNumeroTrajet();    //on recupere le numero du trajet
-                    trajetQuiPart = m->getterNomTrajet();     //on recupere le nom du trajet
+                    trajetQuiPartINT=m->getterNumeroTrajet();       //on recupere le numero du trajet
+                    trajetQuiPart = m->getterNomTrajet();           //on recupere le nom du trajet
                     std::cout<<" Le trajet numero : "<<trajetQuiPartINT<<" nomme : "<<trajetQuiPart<<" arrive au point choisi"<<std::endl;
                 }
 
@@ -512,7 +512,7 @@ void Graphe::calculTempsTrajet()
                 }
             }
             altitudeTrajet = (altitudedepart) - (altitudearrivee);  //on fait une soustraction afin d'avoir le denivelé
-            tempsTrajet= (altitudeTrajet/100) *2;                //denivele/100 afin d'avoir le temps de trajet en seconde
+            tempsTrajet= (altitudeTrajet/100) *2;                   //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
         }
@@ -562,7 +562,7 @@ void Graphe::calculTempsTrajet()
                 }
             }
             altitudeTrajet = (altitudearrivee) - (altitudedepart);  //on fait une soustraction afin d'avoir le denivelé
-            tempsTrajet= ((altitudeTrajet/100) *2*60)+4*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
+            tempsTrajet= ((altitudeTrajet/100) *2*60)+4*60;         //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
         }
@@ -585,7 +585,7 @@ void Graphe::calculTempsTrajet()
                 }
             }
             altitudeTrajet = (altitudearrivee) - (altitudedepart);  //on fait une soustraction afin d'avoir le denivelé
-            tempsTrajet= ((altitudeTrajet/100) *3*60) +2*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
+            tempsTrajet= ((altitudeTrajet/100) *3*60) +2*60;        //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
         }
@@ -606,8 +606,8 @@ void Graphe::calculTempsTrajet()
                     altitudearrivee = s->getterSaltitudePoint();    //on recupere l'altitude du point d'arrivee
                 }
             }
-            altitudeTrajet = (altitudearrivee)- (altitudedepart);  //on fait une soustraction afin d'avoir le denivelé
-            tempsTrajet= ((altitudeTrajet/100) *3*60)+1*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
+            altitudeTrajet = (altitudearrivee)- (altitudedepart);   //on fait une soustraction afin d'avoir le denivelé
+            tempsTrajet= ((altitudeTrajet/100) *3*60)+1*60;         //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
         }
@@ -629,7 +629,7 @@ void Graphe::calculTempsTrajet()
                 }
             }
             altitudeTrajet = (altitudearrivee) - (altitudedepart);  //on fait une soustraction afin d'avoir le denivelé
-            tempsTrajet= ((altitudeTrajet/100) *4*60)+1*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
+            tempsTrajet= ((altitudeTrajet/100) *4*60)+1*60;         //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
         }
@@ -638,7 +638,7 @@ void Graphe::calculTempsTrajet()
         {
             pointdepart = k->getterPointDepart();                   //on recupere le point de depart de ce trajet
             pointarrivee = k->getterPointArrivee();                 //on recupere le point d'arrivee de ce trajet
-            for(auto s : m_graphe_points)                          //on parcours la liste des points
+            for(auto s : m_graphe_points)                           //on parcours la liste des points
             {
                 if(pointdepart == s->getterSnumeroPoint())          //si le point correspon au point de depart
                 {
@@ -651,7 +651,7 @@ void Graphe::calculTempsTrajet()
                 }
             }
             altitudeTrajet = (altitudearrivee) - (altitudedepart);  //on fait une soustraction afin d'avoir le denivelé
-            tempsTrajet= ((altitudeTrajet/100) *4*60)+1*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
+            tempsTrajet= ((altitudeTrajet/100) *4*60)+1*60;         //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
         }
@@ -714,7 +714,7 @@ void Graphe::calculTempsTrajet()
     }
 }
 
-
+///fonction pour trouver un point a partir de son numero
 Sommet* Graphe::rechercherPoint(int choix)
 {
     for(auto elem : m_graphe_points)
@@ -803,12 +803,13 @@ void Graphe::algo_Dijkstra(int i, int f)
 
 }
 
-void Graphe::algo_BSFinteressant()
+/// ALGO 4.5
+void Graphe::algo_cheminPersonnalise()
 {
     int choix;
     for (auto T : m_liste_trajet)  // boucle afin de reanitialiser les poids pour mettre les poids souhaité
     {
-        T->setterTempsTrajet(5);
+        T->setterTempsTrajet(5);  //on initialise tout les sommets à 5 qui est un poids moyen
     }
     do
     {
@@ -850,17 +851,17 @@ void Graphe::algo_BSFinteressant()
                     {
 
                         std::cout<<"GELOFJNEDON";
-                    if((T->getterTypeTrajet()) == "V")       //SI dans la liste un trajet est une piste VERTE
-                    {
-                        T->setterTempsTrajet(10000);                             //on initialise son poid a 1000 (ne passera pas en priorite
-                        std::cout<<T->getterTempsTrajet();
-                        std::cout<<"JE SUIS LA TA MAMAN";
-                        std::cout<<"ALLLFNEOUIBNOFZIO"<<std::endl;
+                        if((T->getterTypeTrajet()) == "V")       //SI dans la liste un trajet est une piste VERTE
+                        {
+                            T->setterTempsTrajet(10000);                             //on initialise son poid a 1000 (ne passera pas en priorite
+                            std::cout<<T->getterTempsTrajet();
+                            std::cout<<"JE SUIS LA TA MAMAN";
+                            std::cout<<"ALLLFNEOUIBNOFZIO"<<std::endl;
+                        }
                     }
-                    }
-                    /*std::cout << std::endl;
+                    std::cout << std::endl;
                     system("pause");
-                    system("cls");*/
+                    system("cls");
                 }
 
                 if (choixPiste == 2) // l'utilisateur ne veut pas de piste BLEU
@@ -941,9 +942,9 @@ void Graphe::algo_BSFinteressant()
             }
             while (choixPiste !='10');
 
-         /*   std::cout << std::endl;
-            system("pause");
-            system("cls");*/
+        std::cout << std::endl;
+        system("pause");
+        system("cls");
 
         }///FIN CASE 1
         break;
@@ -1004,89 +1005,85 @@ void Graphe::algo_BSFinteressant()
                             T->setterTempsTrajet(1000);
                         }
                     }
-                std::cout << std::endl;
-                system("pause");
-                system("cls");
-            }
-
-            if (choixRemontee == 4) // l'utilisateur ne veut pas de TELESIEGE
-            {
-                for (auto T : m_liste_trajet)
-                {
-                    if(T->getterTypeTrajet() == (std::string)telesiege)
-                    {
-                        T->setterTempsTrajet(1000);
-                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
                 }
-                std::cout << std::endl;
-                system("pause");
-                system("cls");
-            }
 
-            if (choixRemontee == 5) // l'utilisateur ne veut pas de pTELESKI
-            {
-                for (auto T : m_liste_trajet)
+                if (choixRemontee == 4) // l'utilisateur ne veut pas de TELESIEGE
                 {
-                    if(T->getterTypeTrajet() == (std::string) teleski)
+                    for (auto T : m_liste_trajet)
                     {
-                        T->setterTempsTrajet(1000);
-                    }
-                }
-                std::cout << std::endl;
-                system("pause");
-                system("cls");
-            }
-            if (choixRemontee == 6)
-            {
-                    for (auto T : m_liste_trajet)                                   //on parcours la liste des trajets
-                    {
-                        if(T->getterTypeTrajet() == (std::string) telepherique)       //SI dans la liste un trajet est un TELEPHERIQUE
+                        if(T->getterTypeTrajet() == (std::string)telesiege)
                         {
-                            T->setterTempsTrajet(1000);                             //on initialise son poid a 1000 (ne passera pas en priorite
+                            T->setterTempsTrajet(1000);
                         }
                     }
                     std::cout << std::endl;
                     system("pause");
                     system("cls");
+                }
+
+                if (choixRemontee == 5) // l'utilisateur ne veut pas de pTELESKI
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) teleski)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+                if (choixRemontee == 6)
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) telepherique || T->getterTypeTrajet() == (std::string) telecabine || T->getterTypeTrajet() == (std::string) telesiege || T->getterTypeTrajet() == (std::string)telesiegeTSD || T->getterTypeTrajet() == (std::string) teleski)
+                        {
+                            T->setterTempsTrajet(1000000000000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+
+
+                if (choixRemontee == 10)
+                {
+                    break;
+                }
+
             }
+            while (choixRemontee !='10');
 
-
-
-            if (choixRemontee == 10)
-            {
-                break;
-            }
-
-        }
-        while (choixRemontee !='10');
-
-        std::cout << std::endl;
-        system("pause");
-        system("cls");
-
-
-
-
-        std::cout << std::endl;
-        system("pause");
-        system("cls");
+            std::cout << std::endl;
+            system("pause");
+            system("cls");
         }///FIN CASE 2
         break;
 
         case 3:
-            {
-
-
-
+        {
             std::cout<<" Les demandes vont etre pris en compte ";
             std::cout<<" Le calcul du chemin est en cours ... ";
-            }///FIN CASE 3
-            break;
+
+            std::cout << std::endl;
+            system("pause");
+            system("cls");
+
+        }///FIN CASE 3
+        break;
 
 
 
         }///FIN DU DWITCH
-    }while(choix != 3);
+    }
+    while(choix != 3);
 
     ///On entre un premier sommet i.
     int sommet1, sommet2;
@@ -1123,55 +1120,6 @@ void Graphe::algo_BSFinteressant()
 void Graphe::affichage()
 {
     std::cout << "=================== PROJET PISCINE: ===================" << std::endl;
-    /* std::cout << "Algorithme de Kruskal " << std::endl << std::endl;
-     std::cout << " - Cet algorithme demande un graphe non oriente." << std::endl;
-     std::cout << " - Cet algorithme demande un graphe pondere. " << std::endl;
-     std::cout << std::endl;
-     std::cout << "Ordre du graphe : " << m_graphe_points.size() << std::endl;
-     std::cout << std::endl;
-     std::cout << "Tous les sommets :" << std::endl;
-
-
-     //Boucle for pour afficher les sommets !
-     for (auto i : m_graphe_points)
-     {
-         std::cout<<"Numero du point : "<< i->getterSnumeroPoint() << "    ";
-         std::cout<<"Nom du lieu : "<< i->getterSnomLieuPoint() <<"   ";
-         std::cout<<"Altitude : "<< i->getterSaltitudePoint() <<"    ";
-         std::cout<< std::endl;
-     }
-     std::cout << std::endl;
-
-
-     Avec ces fonctions, l'utilisateur peut appuyer
-                 sur n'importe quelle touche pour continuer,
-                 cela va nettoyer la console
-
-                 //On saute une ligne
-                 std::cout << std::endl;
-                 system("pause");
-                 system("cls");
-
-     std::cout << "Toutes les aretes : " << std::endl;
-
-     //On fait une boucle pour afficher toutes les aretes du graphe.
-
-     calculTempsTrajet();
-     for (auto j : m_liste_trajet)
-     {
-
-         j->affichageTrajet();
-         //std::cout<<std::endl;
-     }
-     std::cout << std::endl;
-
-     //On saute une ligne
-                 std::cout << std::endl;
-                 system("pause");
-                 system("cls");
-                 int choix;
-     std::cin>>choix;
-     trajetSommetDepartEtArrive(choix);*/
     int choix;
     do
     {
@@ -1221,7 +1169,7 @@ void Graphe::affichage()
 
             //On fait une boucle pour afficher toutes les aretes du graphe.
 
-            calculTempsTrajet();
+            //calculTempsTrajet();
             for (auto j : m_liste_trajet)
             {
 
@@ -1283,7 +1231,7 @@ void Graphe::affichage()
             break;
 
         case 6:
-            algo_BSFinteressant();
+            algo_cheminPersonnalise();
             /*Avec ces fonctions, l'utilisateur peut appuyer
             sur n'importe quelle touche pour continuer,
             cela va nettoyer la console */

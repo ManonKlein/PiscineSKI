@@ -54,7 +54,7 @@ class Graphe
 
 
         void algo_Dijkstra(int i, int j);
-        void algo_BSFinteressant();
+        void algo_cheminPersonnalise();
 
         void affichage();
 
