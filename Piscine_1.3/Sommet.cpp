@@ -46,10 +46,6 @@ int Sommet::getterSaltitudePoint()
     return m_SaltitudePoint;
     //On utilise un return
 }
-int Sommet::getterSmarque()
-{
-    return m_marque;
-}
 
 
 std::vector<Trajet*> Sommet::getTrajets()
@@ -92,11 +88,6 @@ void Sommet::setterSaltitudePoint(int SaltitudePoint)
     m_SaltitudePoint = SaltitudePoint;
 }
 
-///Setteur pour le marquage
-void Sommet::setterSmarque(int marque)
-{
-    m_marque= marque;
-}
 
 void Sommet::setterPred(std::pair<double, Sommet*> nouveauPred)
 {
@@ -113,8 +104,4 @@ void Sommet::setDist(int nouvelleDist)
     m_dist = nouvelleDist;
 }
 
-///Méthode pour réinitialiser le marquage d'un sommet à 0.
-void Sommet::reinitialiser_marque()
-{
-    m_marque=0;
-}
+

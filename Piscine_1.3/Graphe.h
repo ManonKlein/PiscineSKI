@@ -43,9 +43,6 @@ class Graphe
 
         ///____________________________setter_____________________________________
         void settergraphe_points(std::vector<Sommet*> graphe_points);
-
-
-        ///dijkstra ?????
         std::priority_queue<std::pair<float,Sommet*>> getter_file();
 
 
@@ -55,7 +52,6 @@ class Graphe
         float tempsMinutesSecondes(float temps);        //conversion d'un temps en secondes en minutes et secondes
         void calculTempsTrajet();                       //calcul du temps de chaque trajet et push dans la classe trajet
 
-        void rechercher_sommet_connexe();
 
         void algo_Dijkstra(int i, int j);
         void algo_BSFinteressant();

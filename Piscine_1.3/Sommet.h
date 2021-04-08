@@ -20,7 +20,6 @@ class Sommet
         int m_SaltitudePoint;           //l'altitude du point
         int m_nbrSommet;                //nombre de sommet totale
 
-        int m_marque;               /// ICI ?
         std::vector<Trajet*> m_trajets;
         std::pair<double, Sommet*> m_avant;
         int m_dist;
@@ -39,13 +38,9 @@ class Sommet
         int getterSaltitudePoint();             //Getteur pour récuperer l'altitude
 
         int getterSnbrSommet();
-        int getDist();                                           ///get DIJKSTRA
+        int getDist();
         std::vector<Trajet*> getTrajets();
 
-
-                            ///GET DIJKSTRA
-
-        int getterSmarque();    ///BFS
 
         std::pair<double, Sommet*> getAvant();
 
@@ -65,7 +60,7 @@ class Sommet
 
 
         ///__________________________________FONCTION_____________________________________
-        void reinitialiser_marque(); ///BFS ALED
+
 
 
                                                                                              //Destructeur pour libérer la mémoire

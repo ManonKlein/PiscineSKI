@@ -402,6 +402,7 @@ void Graphe::calculTempsTrajet()
         /// PISTE VERTE
         if (  (k->getterTypeTrajet())  == (std::string) pisteVerte) //si le trajet est une piste Verte
         {
+
             pointdepart = k->getterPointDepart();                   //on recupere le point de depart de ce trajet
             pointarrivee = k->getterPointArrivee();                 //on recupere le point d'arrivee de ce trajet
             for (auto s : m_graphe_points)                          //on parcours la liste des points
@@ -420,6 +421,7 @@ void Graphe::calculTempsTrajet()
             tempsTrajet= (altitudeTrajet/100) *5*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
+
         }
 
         /// PISTE BLEU
@@ -443,6 +445,7 @@ void Graphe::calculTempsTrajet()
             tempsTrajet= (altitudeTrajet/100) *4*60;                //denivele/100 afin d'avoir le temps de trajet en seconde
             tempsTrajet=tempsMinutesSecondes(tempsTrajet);          //on le converti en minute seconde
             k->setterTempsTrajet(tempsTrajet);                      // on le push
+
         }
 
         /// PISTE ROUGE
@@ -711,24 +714,6 @@ void Graphe::calculTempsTrajet()
     }
 }
 
-void Graphe::rechercher_sommet_connexe()
-{
-
-    int tmpdepart,tmparrivee;
-    std::map<int, int> departArrivee;
-    for (auto i : m_liste_trajet)
-    {
-        tmpdepart = i->getterPointDepart();
-        tmparrivee =i->getterPointArrivee();
-        std::cout <<"point depart de: "<<i<<" est"<<tmpdepart <<"et darrivee"<<tmparrivee<<std::endl;
-        departArrivee[tmpdepart] =tmparrivee;
-    }
-
-    for(std::map<int,int>::iterator it=departArrivee.begin(); it!=departArrivee.end(); ++it)
-    {
-        std::cout << it->first << " depar" << it->second << " arrive" <<std::endl;
-    }
-}
 
 Sommet* Graphe::rechercherPoint(int choix)
 {
@@ -743,69 +728,95 @@ Sommet* Graphe::rechercherPoint(int choix)
 void Graphe::algo_Dijkstra(int i, int f)
 {
 
-    std::priority_queue<std::pair<float,Sommet*>> file;		 ///On déclare la priority_queue
+    std::priority_queue<std::pair<float,Sommet*>> file;		 //On initialise la priority_queue
+    std::pair<double, Sommet*> avant;                        //on initialise les predecesseurs
+    int dist[m_graphe_points.size()];                        //on initialise un tableau de la taille du nombre de point
+    float tempsTrajetTOT=0;
+    int compt=0;
 
-    std::pair<double, Sommet*> avant;
-    int dist[m_graphe_points.size()];
-
-    for(int j=0; j<m_graphe_points.size(); j++)
+    for(int j=0; j<m_graphe_points.size(); j++)              //on initialiste le tableau de distance à 5000 qui equivaut a une distance infini
+    {
         dist[j] = 5000;
+    }
 
-    dist[i-1]=0;
-    //On push le tableau pour l'agrandir
+    dist[i-1]=0;                                             //on met la distance du sommet initiale à 0 pour le "marquer"
     file.push(std::pair<double,Sommet*>(0, m_graphe_points[i-1]));
-    ///Pour réaliser l'algorithme, on fait une boucle while
-    /* Celle ci choisit le sommet non visité avec la distance la plus faible,
-    calcule la distance à travers lui à chaque voisin non visité,
-    et met à jour la distance du voisin si elle est plus petite.
-    */
 
-    while (file.size()!=0) //Tant que la file est différente de 0,
+    while (file.size()!=0)                                //Tant que la file est différente de 0,
     {
 
+        Sommet* som = file.top().second;        //on cree un vecteur sommet qu'on ajout  au début de la liste
+        file.pop();		                        //On pop pour ajouter une case
 
-        Sommet* som = file.top().second;
-        file.pop();		//On pop pour ajouter une case
-
-        //On fait une boucle for pour regarder les sommets adjacents
-        //On les compare
-        //On prend le plus léger
-        for(auto trajet : som->getTrajets())
+        for(auto T : som->getTrajets())
         {
             //On ajoute une boucle if pour réaliser la comparaison des sommets
-            if(dist[trajet->getterPointArrivee()-1]> dist[som->getterSnumeroPoint()-1]+ trajet->getterTempsTrajet())
+            if(dist[T->getterPointArrivee()-1]> dist[som->getterSnumeroPoint()-1]+ T->getterTempsTrajet())
             {
-               dist[trajet->getterPointArrivee()-1]= dist[som->getterSnumeroPoint()-1]+ trajet->getterTempsTrajet();
-               file.push(std::pair<double, Sommet*>(dist[trajet->getterPointArrivee()-1], m_graphe_points[trajet->getterPointArrivee()-1]));
-               avant.second = som;
-               avant.first = trajet->getterTempsTrajet();
-               m_graphe_points[trajet->getterPointArrivee()-1]->setterPred(avant);
+                dist[T->getterPointArrivee()-1]= dist[som->getterSnumeroPoint()-1]+ T->getterTempsTrajet();
+                file.push(std::pair<double, Sommet*>(dist[T->getterPointArrivee()-1], m_graphe_points[T->getterPointArrivee()-1]));
+                avant.second = som;
+                avant.first = T->getterTempsTrajet();
+                m_graphe_points[T->getterPointArrivee()-1]->setterPred(avant);
             }
         }
     }
 
-            Sommet *somFin = m_graphe_points[f-1];
+    Sommet *somFin = m_graphe_points[f-1];
 
-            std::cout<<somFin->getterSnumeroPoint();
+    std::cout<<somFin->getterSnumeroPoint();
+    for (auto i : m_liste_trajet)
+    {
+        if(somFin->getterSnumeroPoint()== i->getterNumeroTrajet())
+        {
+            std::cout<<"("<<i->getterTypeTrajet()<<")";
+        }
+    }
+    std::cout<<std::endl;
 
-            while(somFin->getterSnumeroPoint() != m_graphe_points[i-1]->getterSnumeroPoint()) /// Affichage du chemin
+    //tant que la liste des sommets FIN est differentes du tableau de depart
+    while(somFin->getterSnumeroPoint() != m_graphe_points[i-1]->getterSnumeroPoint()) /// Affichage du chemin
+    {
+        std::cout<< " <--";
+        std::cout<< m_graphe_points[somFin->getterSnumeroPoint()-1]->getAvant().second->getterSnumeroPoint();
+
+        for (auto i : m_liste_trajet)
+        {
+            if(m_graphe_points[somFin->getterSnumeroPoint()-1]->getAvant().second->getterSnumeroPoint()== i->getterNumeroTrajet())
             {
-                std::cout<< " <--";
-                std::cout<< m_graphe_points[somFin->getterSnumeroPoint()-1]->getAvant().second->getterSnumeroPoint();
-                somFin= m_graphe_points[somFin->getterSnumeroPoint()-1]->getAvant().second;
+                std::cout<<"("<<i->getterTypeTrajet()<<")";
             }
+        }
+        for (auto R : m_liste_trajet)
+        {
+            if (somFin->getterSnumeroPoint() == R->getterPointArrivee()&& m_graphe_points[somFin->getterSnumeroPoint()-1]->getAvant().second->getterSnumeroPoint() == R->getterPointDepart())
+            {
+                tempsTrajetTOT += R->getterTempsTrajet();
+                break;
+            }
+        }
+        somFin= m_graphe_points[somFin->getterSnumeroPoint()-1]->getAvant().second;
+
+    }
+    std::cout<<std::endl;
+    std::cout<<" TEMPS TRAJET TOT :" <<tempsTrajetTOT;
+
 }
 
 void Graphe::algo_BSFinteressant()
 {
     int choix;
+    for (auto T : m_liste_trajet)  // boucle afin de reanitialiser les poids pour mettre les poids souhaité
+    {
+        T->setterTempsTrajet(5);
+    }
     do
     {
         do
         {
-            std::cout << "Que voulez vous faire ? " << std::endl;
-            std::cout << "1. Choisir un chemin skieur experimenté  " << std::endl;
-            std::cout << "2. Choisir un chemin skieur debutant" << std::endl;
+            std::cout << "Quelle chemin preferez vous ne pas emprunter ? " << std::endl;
+            std::cout << "1. Les pistes  " << std::endl;
+            std::cout << "2. Les remontees" << std::endl;
             std::cout << "3. Quitter la selection "<<std::endl;
             std::cin >> choix;
             std::cout << std::endl;
@@ -819,54 +830,291 @@ void Graphe::algo_BSFinteressant()
         {
         case 1:
         {
-            int numpointdepartchoix,numpointarriveechoix;
-            std::string pistenoire ="V", pistebleue ="B";
-            int pointarriveeETAPE;
-            std::cin>>numpointdepartchoix;
-            std::cin>>numpointarriveechoix;
-
-            for (auto i : m_liste_trajet)                   //on parcours la liste des trajets
+            int choixPiste;
+            do
             {
-                if(numpointdepartchoix== i->getterPointDepart())       //si un point a comme point de depart ce point
+                std::string pisteBleu ="B", pisteVerte="V", pisteRouge="R", pisteNoire="N", pisteKL="KL", snowPark="SNOW";
+                std::cout << "Quelle types de pistes vous effraie, ou vous ennuie ? " << std::endl;
+                std::cout << "1 : Les pistes vertes  " << std::endl;
+                std::cout << "2 : Les pistes bleue" << std::endl;
+                std::cout << "3 : Les pistes rouge" << std::endl;
+                std::cout << "4 : Les pistes noire" << std::endl;
+                std::cout << "5 : Les pistes de kilometre lance" << std::endl;
+                std::cout << "6 : Les snowpark" << std::endl;
+                std::cout << "10 : Quitter la selection "<<std::endl;
+                std::cin >> choixPiste;
+
+                if (choixPiste == 1) // l'utilisateur ne veut pas de piste VERTE
                 {
-                    if(i->getterTypeTrajet()!= pistenoire || i->getterTypeTrajet() != pistebleue)
+                    for (auto T : m_liste_trajet)                                   //on parcours la liste des trajets
                     {
-                        pointarriveeETAPE =i->getterPointArrivee();
 
+                        std::cout<<"GELOFJNEDON";
+                    if((T->getterTypeTrajet()) == "V")       //SI dans la liste un trajet est une piste VERTE
+                    {
+                        T->setterTempsTrajet(10000);                             //on initialise son poid a 1000 (ne passera pas en priorite
+                        std::cout<<T->getterTempsTrajet();
+                        std::cout<<"JE SUIS LA TA MAMAN";
+                        std::cout<<"ALLLFNEOUIBNOFZIO"<<std::endl;
                     }
+                    }
+                    /*std::cout << std::endl;
+                    system("pause");
+                    system("cls");*/
                 }
-            }
-            /*Avec ces fonctions, l'utilisateur peut appuyer sur n'importe quelle touche pour continuer,
-            cela va nettoyer la console */
 
-            //On saute une ligne
-            std::cout << std::endl;
+                if (choixPiste == 2) // l'utilisateur ne veut pas de piste BLEU
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) pisteBleu)
+                        {
+                            T->setterTempsTrajet(10000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixPiste == 3) // l'utilisateur ne veut pas de piste ROUGE
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) pisteRouge)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixPiste == 4) // l'utilisateur ne veut pas de piste NOIR
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) pisteNoire)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixPiste == 5) // l'utilisateur ne veut pas de piste KL
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) pisteKL)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixPiste == 6) // l'utilisateur ne veut pas de SNOWPARK
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) snowPark)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixPiste == 10)
+                {
+                    break;
+                }
+
+            }
+            while (choixPiste !='10');
+
+         /*   std::cout << std::endl;
             system("pause");
-            system("cls");
-        }
+            system("cls");*/
+
+        }///FIN CASE 1
         break;
 
         case 2:
         {
 
-            /*Avec ces fonctions, l'utilisateur peut appuyer sur n'importe quelle touche pour continuer,
-            cela va nettoyer la console */
+            int choixRemontee;
+            do
+            {
+                std::string telepherique ="TPH", telecabine="TC", telesiegeTSD="TSD", telesiege="TS", teleski="TK";
+                std::cout << "Est-ce-que vous avez un type de remontee que vous voulez eviter ? " << std::endl;
+                std::cout << "1 : Les telepheriques  " << std::endl;
+                std::cout << "2 : Les telecabines" << std::endl;
+                std::cout << "3 : Les telesiege debrayable " << std::endl;
+                std::cout << "4 : Les telesieges classiques" << std::endl;
+                std::cout << "5 : les teleskis" << std::endl;
+                std::cout<< "6 : le moins de remontees possible"<<std::endl;
+                std::cout << "10 : Quitter la selection "<<std::endl;
+                std::cin >> choixRemontee;
 
-            //On saute une ligne
-            std::cout << std::endl;
-            system("pause");
-            system("cls");
+                if (choixRemontee == 1) // l'utilisateur ne veut pas de TELEPHERIQUE
+                {
+                    for (auto T : m_liste_trajet)                                   //on parcours la liste des trajets
+                    {
+                        if(T->getterTypeTrajet() == (std::string) telepherique)       //SI dans la liste un trajet est un TELEPHERIQUE
+                        {
+                            T->setterTempsTrajet(1000);                             //on initialise son poid a 1000 (ne passera pas en priorite
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixRemontee == 2) // l'utilisateur ne veut pas de TELECABINE
+                {
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) telecabine)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+                }
+
+                if (choixRemontee == 3) // l'utilisateur ne veut pas de TSD
+                {
+
+
+                    for (auto T : m_liste_trajet)
+                    {
+                        if(T->getterTypeTrajet() == (std::string) telesiegeTSD)
+                        {
+                            T->setterTempsTrajet(1000);
+                        }
+                    }
+                std::cout << std::endl;
+                system("pause");
+                system("cls");
+            }
+
+            if (choixRemontee == 4) // l'utilisateur ne veut pas de TELESIEGE
+            {
+                for (auto T : m_liste_trajet)
+                {
+                    if(T->getterTypeTrajet() == (std::string)telesiege)
+                    {
+                        T->setterTempsTrajet(1000);
+                    }
+                }
+                std::cout << std::endl;
+                system("pause");
+                system("cls");
+            }
+
+            if (choixRemontee == 5) // l'utilisateur ne veut pas de pTELESKI
+            {
+                for (auto T : m_liste_trajet)
+                {
+                    if(T->getterTypeTrajet() == (std::string) teleski)
+                    {
+                        T->setterTempsTrajet(1000);
+                    }
+                }
+                std::cout << std::endl;
+                system("pause");
+                system("cls");
+            }
+            if (choixRemontee == 6)
+            {
+                    for (auto T : m_liste_trajet)                                   //on parcours la liste des trajets
+                    {
+                        if(T->getterTypeTrajet() == (std::string) telepherique)       //SI dans la liste un trajet est un TELEPHERIQUE
+                        {
+                            T->setterTempsTrajet(1000);                             //on initialise son poid a 1000 (ne passera pas en priorite
+                        }
+                    }
+                    std::cout << std::endl;
+                    system("pause");
+                    system("cls");
+            }
+
+
+
+            if (choixRemontee == 10)
+            {
+                break;
+            }
+
         }
+        while (choixRemontee !='10');
+
+        std::cout << std::endl;
+        system("pause");
+        system("cls");
+
+
+
+
+        std::cout << std::endl;
+        system("pause");
+        system("cls");
+        }///FIN CASE 2
         break;
 
         case 3:
+            {
 
+
+
+            std::cout<<" Les demandes vont etre pris en compte ";
+            std::cout<<" Le calcul du chemin est en cours ... ";
+            }///FIN CASE 3
             break;
 
-        } //fin du switch
-    }
-    while(choix != 3);
+
+
+        }///FIN DU DWITCH
+    }while(choix != 3);
+
+    ///On entre un premier sommet i.
+    int sommet1, sommet2;
+    std::cout << std::endl << "Entrez ici sommet initial : ";
+    std::cin >> sommet1;
+
+    ///On saisie un deuxieme sommet j.
+    std::cout << std::endl << std::endl << "Entrez ici le sommet final : ";
+    std::cin >> sommet2;
+    std::cout << std::endl;
+
+    ///On appelle l'algorithme de Dijstra directement
+    ///On l'applique au entier i et j.
+    algo_Dijkstra(sommet1, sommet2);
+
+    /*Avec ces fonctions, l'utilisateur peut appuyer
+     sur n'importe quelle touche pour continuer,
+     cela va nettoyer la console */
+
+    //On saute une ligne
+    std::cout << std::endl;
+    system("pause");
+    system("cls");
+
 }
+
+
+
 
 
 
@@ -935,12 +1183,13 @@ void Graphe::affichage()
             std::cout << "3. choisir un trajet et savoir son point de depart ainsi que son point d'arrivee "<<std::endl;
             std::cout << "4. choisir un point blablabla " << std::endl;
             std::cout << "5. DIJKSTRAAAAAA" <<std::endl;
+            std::cout << "6. CHOIX DU TRAJETTTTT YOOOHOUUUUU" <<std::endl;
             std::cin >> choix;
 
             system("pause");
             system("cls");
         }
-        while((choix<1) || (choix>5));
+        while((choix<1) || (choix>6));
 
         //Fonction switch pour que l'utilisateur puisse choisir ce qu'il souhaite faire.
         switch(choix)
@@ -998,8 +1247,8 @@ void Graphe::affichage()
             break;
 
         case 4:
-            //SommettrajetDepartEtArrive();
-            rechercher_sommet_connexe();
+            SommettrajetDepartEtArrive();
+
             /*Avec ces fonctions, l'utilisateur peut appuyer sur n'importe quelle touche pour continuer,
             cela va nettoyer la console */
             std::cout << std::endl;
@@ -1020,11 +1269,24 @@ void Graphe::affichage()
 
             ///On appelle l'algorithme de Dijstra directement
             ///On l'applique au entier i et j.
+            calculTempsTrajet();
             algo_Dijkstra(sommet1, sommet2);
 
             /*Avec ces fonctions, l'utilisateur peut appuyer
              sur n'importe quelle touche pour continuer,
              cela va nettoyer la console */
+
+            //On saute une ligne
+            std::cout << std::endl;
+            system("pause");
+            system("cls");
+            break;
+
+        case 6:
+            algo_BSFinteressant();
+            /*Avec ces fonctions, l'utilisateur peut appuyer
+            sur n'importe quelle touche pour continuer,
+            cela va nettoyer la console */
 
             //On saute une ligne
             std::cout << std::endl;
