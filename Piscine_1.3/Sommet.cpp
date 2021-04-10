@@ -21,6 +21,9 @@ Sommet::Sommet(int nbrSommet)
 {
     m_nbrSommet=nbrSommet;
 }
+
+
+
 ///Destructeur
 Sommet::~Sommet()
 {
@@ -104,4 +107,11 @@ void Sommet::setDist(int nouvelleDist)
     m_dist = nouvelleDist;
 }
 
+void Sommet::setmarque(bool marque){
+    m_marque= marque;
+    }
 
+bool Sommet::getmarque()
+{
+    return m_marque;
+}

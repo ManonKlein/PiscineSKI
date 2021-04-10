@@ -129,21 +129,28 @@
 1617727327 source:c:\users\nicof\desktop\piscine\graphe.cpp
 	"Graphe.h"
 
-1617898981 source:c:\users\klein\desktop\piscine_1.3\graphe.cpp
+1618084343 source:c:\users\klein\desktop\piscine_1.3\graphe.cpp
 	"Graphe.h"
 
-1617892628 c:\users\klein\desktop\piscine_1.3\graphe.h
+1618067226 c:\users\klein\desktop\piscine_1.3\graphe.h
 	<fstream>
 	<iostream>
 	<vector>
 	<string>
+	<fstream>
+	<windows.h>
+	<conio.h>
 	<cmath>
+	<stdio.h>
+	<stdlib.h>
 	<queue>
+	<list>
+	<algorithm>
 	"Sommet.h"
 	"Trajet.h"
 	<map>
 
-1617735197 c:\users\klein\desktop\piscine_1.3\sommet.h
+1617908793 c:\users\klein\desktop\piscine_1.3\sommet.h
 	<fstream>
 	<iostream>
 	<vector>
@@ -158,14 +165,14 @@
 	<ostream>
 	"Sommet.h"
 
-1617710780 source:c:\users\klein\desktop\piscine_1.3\main.cpp
+1617981515 source:c:\users\klein\desktop\piscine_1.3\main.cpp
 	<iostream>
 	<cstdlib>
 	"Graphe.h"
 	"Sommet.h"
 	"Trajet.h"
 
-1617735230 source:c:\users\klein\desktop\piscine_1.3\sommet.cpp
+1617908793 source:c:\users\klein\desktop\piscine_1.3\sommet.cpp
 	"Sommet.h"
 
 1617727408 source:c:\users\klein\desktop\piscine_1.3\trajet.cpp

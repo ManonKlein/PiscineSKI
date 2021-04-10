@@ -4,8 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <windows.h>
+#include <conio.h>
 #include <cmath>
+#include <stdio.h>
+#include <stdlib.h>
 #include <queue>
+#include <list>
+#include <algorithm>
 #include "Sommet.h"
 #include "Trajet.h"
 #include <map>
@@ -24,6 +31,10 @@ class Graphe
     ///variable algo dijkstra
     std::priority_queue<std::pair<float,Sommet*>> m_file;            ////On déclare la priority_queue
 
+    ///variable BFS :
+    int m_V;
+    std::list <Sommet> *adj ;
+    //std::list<int> *adj;
 
     ///On a ensuite la partie publique || Elle permet d'avoir les méthodes, fonctions, constructeurs , destrcteurs, getteur, setter, et autre
     public :
@@ -47,13 +58,16 @@ class Graphe
 
 
         ///_________________________ Méthodes et fonctions de la classe graphe
+        void Color(int couleurDuTexte,int couleurDeFond);
+        void gotoligcol( int lig, int col );
         void trajetSommetDepartEtArrive();              //fonction pour trouver les sommets à partir d'un trajet choisi
         void SommettrajetDepartEtArrive();              //fonction pour trouver les trajets relié à un sommet choisi
         float tempsMinutesSecondes(float temps);        //conversion d'un temps en secondes en minutes et secondes
         void calculTempsTrajet();                       //calcul du temps de chaque trajet et push dans la classe trajet
 
-
+        void algo_BFS(int s, int f);
         void algo_Dijkstra(int i, int j);
+        void algo_DijkstraPLS(int i);
         void algo_cheminPersonnalise();
 
         void affichage();

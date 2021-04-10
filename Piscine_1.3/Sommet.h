@@ -18,7 +18,8 @@ class Sommet
         int m_SnumeroPoint;             //int pour l'id d'un point
         std::string m_SnomLieuPoint;    //string pour le nom du point
         int m_SaltitudePoint;           //l'altitude du point
-        int m_nbrSommet;                //nombre de sommet totale
+        int m_nbrSommet;                //nombre de sommet totale$
+        bool m_marque;
 
         std::vector<Trajet*> m_trajets;
         std::pair<double, Sommet*> m_avant;
@@ -29,7 +30,7 @@ class Sommet
 
         Sommet();                                                                     //Constructeur par défaut
         Sommet(int SnumeroPoint, std::string SnomLieuPoint, int SaltitudePoint);      //Constructeur surchargé
-        Sommet(int nbrSommet);                                                        //constructeur surchargé bis
+        Sommet(int nbrSommet);                                                   //constructeur surchargé bis
         ~Sommet();                                                                    //destructeur
 
         /// ____________________GETTER__________________________
@@ -51,7 +52,8 @@ class Sommet
         void setterSnomLieuPoint(std::string SnomLieuPoint);    //Setter pour modifier l'entier
         void setterSaltitudePoint(int SaltitudePoint);          //Setter pour modifier l'entier
 
-        void setterSmarque(int marque); ///BFS
+        void setmarque(bool marque);
+        bool getmarque();
 
         void ajouterTrajet(Trajet* nouveauTrajet);
         void setDist(int nouvelleDist);
